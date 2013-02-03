@@ -12,13 +12,10 @@ class TestRunner extends \PHPUnit_TextUI_TestRunner {
     $result = new PHPUnit_Framework_TestResult;
 
     $printer = new PHPUnit_TextUI_ResultPrinter(
-                  NULL,
-                  false,
-                  true,
-                  false
-                 #@$arguments['verbose'],
-                 #@$arguments['colors'],
-                 #@$arguments['debug']
+                  null,
+                  !!$arguments["verbose"],
+                  !$arguments["nocolor"],
+                  !!$arguments["debug"]
                 );
 
 
