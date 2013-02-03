@@ -1,7 +1,5 @@
 <?php
 
-require_once "Phec.php";
-
 class GroupTest extends PHPUnit_Framework_TestCase {
   function setUp() {
     parent::setUp();
@@ -13,45 +11,59 @@ class GroupTest extends PHPUnit_Framework_TestCase {
     $mock->expects($this->once())->method("testRun");
 
 
-    describe("this is a test that should pass", function() use($mock) {
+    $result = describe("this is a test that should pass", function() use($mock) {
       $this->it("should execute", function() use($mock) {
         $mock->testRun();
       });
     })->run();
+
+    $this->assertEquals(0, $result->errorCount());
+    $this->assertEquals(0, $result->failureCount());
+    $this->assertEquals(1, count($result));
+    
   }
 
-  /**
-   * @expectedException Phec\Expectation\Pending
-   */
   function test_empty_expectations_should_throw_a_pending_exception() {
-    describe("an empty test", function() {
+    $result = describe("an empty test", function() {
       $this->it("should be empty");
     })->run();
+
+    $this->assertEquals(1, $result->notImplementedCount());
   }
 
-  /**
-   * @expectedException ANewException
-   */
   function testItShouldRaiseAnException() {
-    describe("this is a test that should raise an exception", function() {
+    $result = describe("this is a test that should raise an exception", function() {
       $this->it("raises an exception", function() {
         throw new ANewException;
       });
     })->run();
+
+    $this->assertEquals(1, $result->errorCount());
+    $this->assertEquals(0, $result->failureCount());
+    $this->assertEquals(1, count($result));
+  }
+
+  function testItShouldRunMultipleItsAndCountThem() {
+    $result = describe("this is a test with multiple blocks", function() {
+      $this->it("should run the first spec specs", function() {});
+      $this->it("should run the second specs", function() {});
+    })->run();
+
+    $this->assertEquals(2, count($result));
   }
 
 
-  /**
-   * @expectedException ANewException
-   */
   function testItAllowsNestedDescribes() {
-    describe("this is a test that is nested", function() {
+    $result = describe("this is a test that is nested", function() {
       $this->describe("this is nested", function() {
         $this->it("raises an exception", function() {
           throw new ANewException;
         });
       });
     })->run();
+    $this->assertEquals(1, $result->errorCount());
+    $this->assertEquals(0, $result->failureCount());
+    $this->assertEquals(1, count($result));
   }
 
   function testItAllowsEmptyDescribes() {

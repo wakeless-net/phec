@@ -30,9 +30,11 @@ class ExampleGroup {
     return $this->parent;
   }
 
+  private $contexts = [];
+
   function describe($name, $function = null) {
     $group = new ExampleGroup($name, $function, $this);
-    $group->run();
+    $this->contexts[] = $group;
   }
 
   function it($name, $function = null) {
@@ -90,14 +92,26 @@ class ExampleGroup {
     }
   }
 
+  function createResult() {
+    return new \PHPUnit_Framework_TestResult;
+  }
 
-  function run() {
+  function run($result = null) {
+    if(!$result) {
+      $result = $this->createResult();
+    }
+
     foreach($this->expectations as $spec) {
       $this->let_data = [];
       $this->run_before();
 
-      $spec->run();
+      $spec->run($result);
     }
+
+    foreach($this->contexts as $context) {
+      $context->run($result);
+    }
+    return $result;
   }
 
 }

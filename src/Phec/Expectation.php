@@ -4,7 +4,10 @@ namespace Phec;
 
 use Phec\Expectation\Pending;
 
-class Expectation {
+/**
+ * @abstract
+ */
+class Expectation extends \PHPUnit_Framework_TestCase {
   private $name;
   private $block;
 
@@ -13,14 +16,17 @@ class Expectation {
     $this->block = $block;
   }
 
-  function run() {
+  function toString() {
+    return $this->name;
+  }
+
+  function runTest() {
     if($this->block) {
-      $block = $this->block;
+      $block = $this->block->bindTo($this);
       $block();
     } else {
       throw new Pending($this->name);
     }
   }
-
 
 }

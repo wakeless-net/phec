@@ -1,7 +1,5 @@
 <?php
 
-require_once "Phec.php";
-
 class BeforeTest extends PHPUnit_Framework_TestCase {
   function test_before_should_be_executed() {
     $mock = $this->getMock("stdClass", ["before"]);

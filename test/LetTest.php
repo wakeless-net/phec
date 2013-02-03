@@ -1,7 +1,5 @@
 <?php
 
-require_once "Phec.php";
-
 class LetTest extends PHPUnit_Framework_TestCase {
   function testLet() {
     $test = $this;

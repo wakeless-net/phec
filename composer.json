@@ -1,0 +1,22 @@
+{
+  "name": "wakeless-net/phec",
+  "description": "RSpec for PHP",
+  "homepage": "http://github.com/wakeless-net/phec",
+  "license": "MIT",
+  "keywords": ["rspec", "testing", "unit testing", "PHPUnit"],
+  "authors": [
+    {
+      "name": "Michael Gall",
+      "email": "michael@wakeless.net"
+    }
+  ],
+  "require": {
+    "php": ">=5.4"
+  },
+  "version": "0.0.1",
+  "autoload": {
+    "psr-0": {"Phec": "src/"},
+    "files": ["src/Phec.php"]
+  }
+}
+
