@@ -7,6 +7,7 @@ class ExampleGroup {
   public static $count = 0;
 
   private $name;
+  protected $options = [];
   private $block;
 
   private $let_definitions = [];
@@ -16,9 +17,11 @@ class ExampleGroup {
 
   private $expectations = [];
 
-  function __construct($name, $block = null, $parent = null) {
+  function __construct($name, $options = array(), $block = null, $parent = null) {
     $this->name = $name;
     $this->parent = $parent;
+
+    $this->options = $options;
 
     if($block) {
       $block = $block->bindTo($this);
@@ -32,13 +35,21 @@ class ExampleGroup {
 
   private $contexts = [];
 
-  function describe($name, $function = null) {
-    $group = new ExampleGroup($name, $function, $this);
+  function describe($name, $options = null, $function = null) {
+    if(is_null($function) && $options instanceof Closure) {
+      $function = $options;
+      $options = [];
+    } elseif(is_null($function) && is_null($options)) { 
+      //do nothing
+    }
+
+    $group = new ExampleGroup($name, $options, $function, $this);
     $this->contexts[] = $group;
   }
 
   function it($name, $function = null) {
-    $it = new Expectation($name, $function);
+    $spec_class = @$this->options["class_name"] ?: "\Phec\Expectation";
+    $it = new $spec_class($name, $function);
     $this->expectations[] = $it;
   }
 
