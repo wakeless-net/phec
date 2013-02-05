@@ -49,7 +49,7 @@ class ExampleGroup {
 
   function it($name, $function = null) {
     $spec_class = @$this->options["class_name"] ?: "\Phec\Expectation";
-    $it = new $spec_class($name, $function);
+    $it = new $spec_class($name, $function, $this);
     $this->expectations[] = $it;
   }
 
