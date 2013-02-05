@@ -11,7 +11,6 @@ class ExampleGroup {
   private $block;
 
   private $let_definitions = [];
-  private $let_data = [];
 
   private $parent = null;
 
@@ -63,20 +62,16 @@ class ExampleGroup {
     $this->let_definitions[$name] = $variable;
   }
 
-  function __get($name) {
-    $variable = @$this->let_data[$name];
 
-    if($variable) { 
-      return $variable;
+
+  function get_let($name, $scope) {
+    if($this->has_let($name)) {
+      return $this->process_let($name, $scope);
     } else {
-      if($this->has_let($name)) {
-        return $this->let_data[$name] = $this->process_let($name);
+      if($this->getParent()) {
+        return $this->getParent()->get_let($name, $scope);
       } else {
-        if($this->getParent()) {
-          return $this->getParent()->$name;
-        } else {
-          return null;
-        }
+        return null;
       }
     }
   } 
@@ -85,9 +80,10 @@ class ExampleGroup {
     return !!@$this->let_definitions[$name];
   }
 
-  private function process_let($name) {
+  private function process_let($name, $scope) {
     $definition = @$this->let_definitions[$name];
     if($definition instanceof Closure) {
+      $definition = $definition->bindTo($scope);
       return $definition();
     } elseif(is_object($definition)) {
       return clone $definition;
@@ -113,7 +109,6 @@ class ExampleGroup {
     }
 
     foreach($this->expectations as $spec) {
-      $this->let_data = [];
       $this->run_before();
 
       $spec->run($result);

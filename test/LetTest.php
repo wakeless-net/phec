@@ -13,12 +13,15 @@ class LetTest extends PHPUnit_Framework_TestCase {
 
   function testLetBlock() {
     $test = $this;
-    describe("let", function() use ($test) {
+    $response = describe("let", function() use ($test) {
       $this->let("var", function() { return "bbb"; });
       $this->it("access let", function() use ($test) {
         $test->assertEquals("bbb", $this->var);
       });
     })->run();
+
+    $this->assertTrue($result->wasSuccessful());
+
   }
 
   function testLetsAreAvailableInNestedBlocks() {

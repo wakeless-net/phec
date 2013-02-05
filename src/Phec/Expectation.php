@@ -22,16 +22,26 @@ class Expectation extends \PHPUnit_Framework_TestCase {
     return $this->name;
   }
 
-  function __get($variable) {
-    return $this->parent->$variable;
-  }
-
   function runTest() {
     if($this->block) {
       $block = $this->block->bindTo($this);
       $block();
     } else {
       throw new Pending($this->name);
+    }
+  }
+
+  private $let_data = [];
+
+  function __get($name) {
+    $variable = @$this->let_data[$name];
+
+    if($variable) { 
+      return $variable;
+    } elseif($this->parent) {
+      return $this->let_data[$name] = $this->parent->get_let($name, $this);
+    } else {
+      return null;
     }
   }
 
