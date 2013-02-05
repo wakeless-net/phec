@@ -10,6 +10,10 @@
       "email": "michael@wakeless.net"
     }
   ],
+
+  "bin": [
+    "bin/phec"
+  ],
   "require": {
     "php": ">=5.4",
     "nategood/commando": "*"
