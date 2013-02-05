@@ -46,8 +46,14 @@ class ExampleGroup {
     $this->contexts[] = $group;
   }
 
+  function get_class_name() {
+    if(@$this->options["class_name"]) return $this->options["class_name"];
+    if($this->parent) return $this->parent->get_class_name();
+    return "\Phec\Expectation";
+  }
+
   function it($name, $function = null) {
-    $spec_class = @$this->options["class_name"] ?: "\Phec\Expectation";
+    $spec_class = $this->get_class_name();
     $it = new $spec_class($name, $function, $this);
     $this->expectations[] = $it;
   }
