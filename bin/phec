@@ -35,14 +35,5 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-define('PHPUnit_MAIN_METHOD', 'PHPUnit_TextUI_Command::main');
-
-if (strpos('/usr/local/Cellar/php54/5.4.11/bin/php', '@php_bin') === 0) {
-    require dirname(__FILE__) . DIRECTORY_SEPARATOR . 'PHPUnit' . DIRECTORY_SEPARATOR . 'Autoload.php';
-} else {
-    require '/usr/local/Cellar/php54/5.4.11/lib/php' . DIRECTORY_SEPARATOR . 'PHPUnit' . DIRECTORY_SEPARATOR . 'Autoload.php';
-}
-
-require_once dirname(__DIR__) . DIRECTORY_SEPARATOR . "vendor". DIRECTORY_SEPARATOR . "autoload.php";
-
+require_once __DIR__ . DIRECTORY_SEPARATOR . "../../..". DIRECTORY_SEPARATOR . "autoload.php";
 Phec\Command::main();
