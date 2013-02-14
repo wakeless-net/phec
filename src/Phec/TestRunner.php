@@ -6,8 +6,10 @@ use PHPUnit_TextUI_ResultPrinter;
 
 class TestRunner extends \PHPUnit_TextUI_TestRunner {
 
-  static function run($test, array $arguments = array()) {
-    $wrap = new Wrapper($test);
+  static function run($tests, array $arguments = array()) {
+    foreach($tests as $test) {
+      $wrap = new Wrapper($test);
+    }
 
     $result = new PHPUnit_Framework_TestResult;
 

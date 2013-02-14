@@ -21,7 +21,7 @@ class Command {
     $flags = $processedArgs->getFlagValues();
 
     $runner = new TestRunner;
-    $runner->run($args[0], $flags);
+    $runner->run($args, $flags);
 
   }
 
