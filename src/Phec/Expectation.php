@@ -45,4 +45,8 @@ class Expectation extends \PHPUnit_Framework_TestCase {
     }
   }
 
+  function expects($subject) {
+    return new Assertion($subject, $this);
+  }
+
 }

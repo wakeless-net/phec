@@ -15,7 +15,7 @@ class TestRunner extends \PHPUnit_TextUI_TestRunner {
           }
         }
       } else {
-        $wrap = new Wrapper($test);
+        $wrap = new Wrapper($test_file);
       }
     }
 
