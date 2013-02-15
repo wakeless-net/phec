@@ -17,5 +17,15 @@ class Assertion {
     return call_user_func_array(array($this->test, "assert$name"), $args);
   }
 
+  function to_raise_error($exception) {
+    try {
+      $subject = $this->subject;
+      $subject();
+      $this->assertTrue(false, "this should raise an exception $e");
+    } catch(\Exception $e) {
+      $this->test->assertEquals($exception, $e);
+    }
+  }
+
 
 }

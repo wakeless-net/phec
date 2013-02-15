@@ -27,6 +27,14 @@ describe("assertions", function() {
 
       $this->assertFalse($result->wasSuccessful());
     });
+
+    $this->it("should handle raising of exceptions", function() {
+      $this->expects(function() {
+        throw new Exception("Yep");
+      })->to_raise_error(new Exception("Yep"));
+    });
   });
+
+
 
 });
