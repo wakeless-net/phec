@@ -34,7 +34,7 @@ class ExampleGroup {
 
   private $contexts = [];
 
-  function describe($name, $options = null, $function = null) {
+  function context($name, $options = null, $function = null) {
     if(is_null($function) && $options instanceof Closure) {
       $function = $options;
       $options = [];
@@ -44,6 +44,10 @@ class ExampleGroup {
 
     $group = new ExampleGroup($name, $options, $function, $this);
     $this->contexts[] = $group;
+  }
+
+  function describe($name, $options = null, $function = null) {
+    return $this->context($name, $options, $function);
   }
 
   function get_class_name() {
