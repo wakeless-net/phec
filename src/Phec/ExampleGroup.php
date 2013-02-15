@@ -72,6 +72,10 @@ class ExampleGroup {
     $this->let_definitions[$name] = $variable;
   }
 
+  function subject($variable) {
+    $this->let("subject", $variable);
+  }
+
 
 
   function get_let($name, $scope) {
