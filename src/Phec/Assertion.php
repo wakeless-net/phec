@@ -10,9 +10,20 @@ class Assertion {
     $this->test = $test;
   }
 
+  static function from_snake_case($str) {
+    $str = preg_replace("/_/", " ", $str);
+    return $str;
+  }
+
+  static function to_camel_case($str) {
+    $str = ucwords($str);
+    return preg_replace("/\s/", "", $str);
+  }
+
+
   function __call($name, $args) {
-    $name = ucwords($name);
-    array_unshift($args, $this->subject);
+    $name = self::to_camel_case(self::from_snake_case($name));
+    array_push($args, $this->subject);
 
     return call_user_func_array(array($this->test, "assert$name"), $args);
   }

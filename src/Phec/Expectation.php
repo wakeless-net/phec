@@ -23,6 +23,9 @@ class Expectation extends \PHPUnit_Framework_TestCase {
   }
 
   function runTest() {
+    if($this->parent) {
+      $this->parent->run_before($this);
+    }
     if($this->block) {
       $block = $this->block->bindTo($this);
       $block();

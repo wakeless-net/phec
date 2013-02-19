@@ -106,7 +106,7 @@ class ExampleGroup {
     }
   }
 
-  protected function run_before($spec) {
+  public function run_before($spec) {
     if($this->getParent()) $this->getParent()->run_before($spec);
     foreach($this->before as $block) {
       $block = $block->bindTo($spec);
@@ -124,8 +124,6 @@ class ExampleGroup {
     }
 
     foreach($this->expectations as $spec) {
-      $this->run_before($spec);
-
       $spec->run($result);
     }
 

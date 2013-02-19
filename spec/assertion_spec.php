@@ -14,8 +14,14 @@ describe("assertions", function() {
 
       $stub = $this->getMock("stdClass", ["assertEquals"]);
 
-      $stub->expects($this->once())->method("assertEquals")->with("subject", "test");
+      $stub->expects($this->once())->method("assertEquals")->with("test", "subject");
       (new Assertion("subject", $stub))->equals("test");
+    });
+
+    $this->it("should intepret snake case to camel case", function() {
+      $stub = $this->getMock("stdClass", ["assertNotEqual"]);
+      $stub->expects($this->once())->method("assertNotEqual")->with("test", "subject");
+      (new Assertion("subject", $stub))->not_equal("test");
     });
 
     $this->it("should fail when an assertion fails", function() {
