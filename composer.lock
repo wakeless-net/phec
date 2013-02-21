@@ -1,5 +1,5 @@
 {
-    "hash": "4f7e7fb797d234f2897332dfa8ab9b96",
+    "hash": "3047267089cf3452e72206b5c6162684",
     "packages": [
         {
             "name": "kevinlebrun/colors.php",
@@ -49,33 +49,34 @@
         },
         {
             "name": "mockery/mockery",
-            "version": "0.7.2",
+            "version": "dev-master",
             "source": {
                 "type": "git",
                 "url": "https://github.com/padraic/mockery.git",
-                "reference": "0.7.2"
+                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380"
             },
             "dist": {
                 "type": "zip",
-                "url": "https://api.github.com/repos/padraic/mockery/zipball/0.7.2",
-                "reference": "0.7.2",
+                "url": "https://api.github.com/repos/padraic/mockery/zipball/bac68ea04775a33c2da668de646ad9827dc4c380",
+                "reference": "bac68ea04775a33c2da668de646ad9827dc4c380",
                 "shasum": ""
             },
             "require": {
                 "php": ">=5.3.2"
             },
-            "suggest": {
-                "Hamcrest": "1.0.0"
+            "require-dev": {
+                "hamcrest/hamcrest": "1.1.0"
             },
-            "time": "2012-01-24 20:22:39",
+            "time": "2013-02-17 12:15:28",
             "type": "library",
             "autoload": {
                 "psr-0": {
                     "Mockery": "library/"
                 }
             },
+            "notification-url": "https://packagist.org/downloads/",
             "license": [
-                "New BSD"
+                "BSD-3-Clause"
             ],
             "authors": [
                 {
@@ -87,21 +88,17 @@
             "description": "Mockery is a simple yet flexible PHP mock object framework for use in unit testing with PHPUnit, PHPSpec or any other testing framework. Its core goal is to offer a test double framework with a succint API capable of clearly defining all possible object operations and interactions using a human readable Domain Specific Language (DSL). Designed as a drop in alternative to PHPUnit's phpunit-mock-objects library, Mockery is easy to integrate with PHPUnit and can operate alongside phpunit-mock-objects without the World ending.",
             "homepage": "http://github.com/padraic/mockery",
             "keywords": [
-                "bdd",
+                "BDD",
+                "TDD",
                 "library",
                 "mock",
                 "mock objects",
                 "mockery",
                 "stub",
-                "tdd",
                 "test",
                 "test double",
                 "testing"
-            ],
-            "support": {
-                "source": "https://github.com/padraic/mockery/tree/0.7.2",
-                "issues": "https://github.com/padraic/mockery/issues"
-            }
+            ]
         },
         {
             "name": "nategood/commando",
@@ -549,7 +546,7 @@
 
     ],
     "minimum-stability": "stable",
-    "stability-flags": [
-
-    ]
+    "stability-flags": {
+        "mockery/mockery": 20
+    }
 }
