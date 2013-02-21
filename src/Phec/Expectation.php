@@ -3,6 +3,7 @@
 namespace Phec;
 
 use Phec\Expectation\Pending;
+use Mockery;
 
 /**
  * @abstract
@@ -50,6 +51,11 @@ class Expectation extends \PHPUnit_Framework_TestCase {
 
   function expects($subject) {
     return new Assertion($subject, $this);
+  }
+
+  function mock() {
+    $args = func_get_args();
+    return call_user_func_array(array("Mockery", "mock"), $args);
   }
 
 }
