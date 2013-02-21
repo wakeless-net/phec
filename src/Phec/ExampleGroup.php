@@ -28,6 +28,14 @@ class ExampleGroup {
     }
   }
 
+  function getName() {
+    if($this->parent) {
+      return $this->parent->getName()."\n\r".$this->name;
+    } else {
+      return $this->name;
+    }
+  }
+
   function getParent() {
     return $this->parent;
   }

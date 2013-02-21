@@ -20,7 +20,16 @@ class Expectation extends \PHPUnit_Framework_TestCase {
   }
 
   function toString() {
-    return $this->name;
+    return $this->getName();
+  }
+
+  function getName($withData = true) {
+    if($this->parent) {
+      return $this->parent->getName()."\n\r".$this->name;
+    } else {
+      return $this->name;
+    }
+
   }
 
   function runTest() {
