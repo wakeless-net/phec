@@ -10,7 +10,12 @@
       "email": "michael@wakeless.net"
     }
   ],
-
+  "repositories": [
+    {
+      "type": "vcs",
+      "url":  "git@github.com:padraic/mockery"
+    }
+  ],
   "bin": [
     "bin/phec"
   ],
