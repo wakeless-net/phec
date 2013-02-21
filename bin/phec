@@ -35,5 +35,5 @@
  * POSSIBILITY OF SUCH DAMAGE.
  */
 
-require_once __DIR__ . DIRECTORY_SEPARATOR . "../../..". DIRECTORY_SEPARATOR . "autoload.php";
+require_once "vendor/autoload.php";
 Phec\Command::main();
