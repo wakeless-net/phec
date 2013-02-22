@@ -2,6 +2,7 @@
 
 class Phec {
   static public $top_level_groups = [];
+  static public $config = [];
 }
 
 function describe($name, $options = null, $block=null) {

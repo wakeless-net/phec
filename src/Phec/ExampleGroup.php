@@ -59,9 +59,26 @@ class ExampleGroup {
   }
 
   function get_class_name() {
-    if(@$this->options["class_name"]) return $this->options["class_name"];
-    if($this->parent) return $this->parent->get_class_name();
-    return "\Phec\Expectation";
+    if(@$this->options["class_name"]) {
+      $class_name = $this->options["class_name"];
+    } else {
+      if($this->parent) {
+        $class_name = $this->parent->get_class_name();
+      } else {
+        $class_name = isset(\Phec::$config["class_name"]) ? \Phec::$config["class_name"] : "\Phec\Expectation";
+      }
+    }
+
+    return $this->evaluate($class_name);
+  }
+
+  function evaluate($variable) {
+    if($variable instanceof Closure) {
+      $variable = $variable->bindTo($this);
+      return $variable();
+    } else {
+      return $variable;
+    }
   }
 
   function it($name, $function = null) {
