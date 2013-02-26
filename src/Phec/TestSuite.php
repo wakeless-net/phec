@@ -12,7 +12,6 @@ class TestSuite extends PHPUnit_Framework_TestSuite {
 
   function run(PHPUnit_Framework_TestResult $result = null) {
     if(!$result) $result = new PHPUnit_Framework_TestResult;
-    $result->addListener(new \Mockery\Adapter\Phpunit\TestListener());
 
     foreach(Phec::$top_level_groups as $context) {
       $context->run($result);

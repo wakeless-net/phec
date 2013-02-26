@@ -28,6 +28,7 @@ class TestRunner extends \PHPUnit_TextUI_TestRunner {
                   !!$arguments["debug"]
                 );
 
+    $result->addListener(new \Mockery\Adapter\Phpunit\TestListener());
 
     $result->addListener($printer);
     
