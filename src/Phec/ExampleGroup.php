@@ -158,4 +158,8 @@ class ExampleGroup {
     return $result;
   }
 
+  function mock() {
+    $args = func_get_args();
+    return call_user_func_array(array("Mockery", "mock"), $args);
+  }
 }
