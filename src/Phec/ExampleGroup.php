@@ -87,6 +87,10 @@ class ExampleGroup {
     $this->expectations[] = $it;
   }
 
+  function xit($name, $function = null) {
+    $this->expectations[] = new PendingExpectation($name, $this);
+  }
+
 
   private $before = [];
   function before($block) {

@@ -67,4 +67,12 @@ class Expectation extends \PHPUnit_Framework_TestCase {
     return call_user_func_array(array("Mockery", "mock"), $args);
   }
 
+  function self() {
+    return \Mockery::self();
+  }
+
+  function tearDown() {
+    \Mockery::close();
+  }
+
 }
