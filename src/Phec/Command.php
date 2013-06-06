@@ -31,6 +31,7 @@ class Command {
     $cmd->option("nocolor")->boolean()->describedAs("Used to remove color from the outputs.");
     $cmd->option("verbose")->boolean()->describedAs("Verbose output of tests.");
     $cmd->option("debug")->boolean()->describedAs("Output debugging information.");
+    $cmd->option("filter")->describedAs("Filter the test by name");
     return $cmd;
   }
 }

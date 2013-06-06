@@ -30,7 +30,9 @@ class ExampleGroup {
 
   function getName() {
     if($this->parent) {
-      return $this->parent->getName()."\n\r".$this->name;
+      $name = $this->parent->getName();
+      $join = (substr($this->name, 0, 1) == "#") ? "" : " ";
+      return $this->parent->getName().$join.$this->name;
     } else {
       return $this->name;
     }
@@ -147,17 +149,19 @@ class ExampleGroup {
     return new \PHPUnit_Framework_TestResult;
   }
 
-  function run($result = null) {
+  function run($result = null, $filter = false) {
     if(!$result) {
       $result = $this->createResult();
     }
 
     foreach($this->expectations as $spec) {
-      $spec->run($result);
+      if(!$filter || stripos($spec->getName(), $filter) !== false) {
+        $spec->run($result, $filter);
+      }
     }
 
     foreach($this->contexts as $context) {
-      $context->run($result);
+      $context->run($result, $filter);
     }
     return $result;
   }

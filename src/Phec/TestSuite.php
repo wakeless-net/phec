@@ -10,11 +10,11 @@ class TestSuite extends PHPUnit_Framework_TestSuite {
     return new self;
 	}
 
-  function run(PHPUnit_Framework_TestResult $result = null) {
+  function run(PHPUnit_Framework_TestResult $result = null, $filter = false) {
     if(!$result) $result = new PHPUnit_Framework_TestResult;
 
     foreach(Phec::$top_level_groups as $context) {
-      $context->run($result);
+      $context->run($result, $filter);
     }
   }
 }

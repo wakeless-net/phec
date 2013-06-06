@@ -30,7 +30,7 @@ class TestRunner extends \PHPUnit_TextUI_TestRunner {
     $result->addListener($printer);
     
     $suite = new TestSuite;
-    $suite->run($result);
+    $suite->run($result, $arguments["filter"]);
 
     $printer->printResult($result);
   }

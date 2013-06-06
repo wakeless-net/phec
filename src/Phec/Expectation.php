@@ -25,7 +25,9 @@ class Expectation extends \PHPUnit_Framework_TestCase {
 
   function getName($withData = true) {
     if($this->parent) {
-      return $this->parent->getName()."\n\r".$this->name;
+      $name = $this->parent->getName();
+      $join = (substr($this->name, 0, 1) == "#") ? "" : " ";
+      return $this->parent->getName().$join.$this->name;
     } else {
       return $this->name;
     }
