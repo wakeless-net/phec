@@ -1,4 +1,4 @@
-#!/usr/local/Cellar/php54/5.4.11/bin/php
+#!/usr/local/bin/php
 <?php
 /* PHPUnit
  *
